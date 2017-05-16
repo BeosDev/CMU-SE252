@@ -14,34 +14,30 @@ import java.util.Scanner;
  */
 public class MangBamInteger {
     //Kích thước của độ dài mảng băm tùy theo đề bài ra
-    int tableSize = 17;
-
-    void bam(){
+    final int tableSize = 113;
+    LinkedList<Integer>[]lists = new LinkedList[tableSize];
+    
+    void defineHashTable(){
         //Mảng danh sách liên k
-        LinkedList<Integer>[]lists = new LinkedList[tableSize];
-
-
-        Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-
-        for (int i = 0;i<n;i++){
-            int x = scanner.nextInt();
-
-            //Chia lấy vị trí của danh sách liên kết thứ hf
-            int hf = x % tableSize;
-
-            //Nếu danh sách liên kết hf là null thì phải khởi tạo
-            if (lists[hf] == null)
-                lists[hf] = new LinkedList<>();
-
-            //Kiểm tra xem đã có x hay chưa, nếu chưa có thì add vào
-            if (!lists[hf].contains(x))
-                lists[hf].add(x);
+        for (int i = 0;i<tableSize;i++){
+            lists[i] = new LinkedList();
         }
-
     }
+    
+    //Chia lấy vị trí của danh sách liên kết thứ hf
+    int hf(int x){
+        return x % tableSize;
+    }
+    
+    void insert(int x){
+         int pos = hf(x);
+        
+         //Kiểm tra xem đã có x hay chưa, nếu chưa có thì add vào
+         if (!lists[pos].contains(x))
+               lists[pos].add(x);
+    }
+    
     public static void main(String[] args) {
         MangBamInteger s = new MangBamInteger();
-        s.bam();
     }
 }
