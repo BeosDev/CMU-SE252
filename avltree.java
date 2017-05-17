@@ -81,12 +81,8 @@ public class avltree {
     }
 
     Node leftRightRotate(Node node){
-        Node nodeLeftRight = node.left.right;
-        Node nodeLeft = node.left;
-        nodeLeft.right = nodeLeftRight.left;
-        node.left = nodeLeftRight.right;
-        nodeLeftRight.left = nodeLeft;
-        nodeLeftRight.right = node;
+        Node nodeLeftRight = leftRotate(node.left);
+        nodeLeftRight = rightRotate(nodeLeftRight);
         return nodeLeftRight;
     }
 
@@ -98,12 +94,8 @@ public class avltree {
     }
 
     Node rightLeftRotate(Node node){
-        Node nodeRightLeft = node.right.left;
-        Node nodeRight = node.right;
-        nodeRight.left = nodeRightLeft.right;
-        node.right = nodeRightLeft.left;
-        nodeRightLeft.right = nodeRight;
-        nodeRightLeft.left = node;
+        Node nodeRightLeft = rightRotate(node.right);
+        nodeRightLeft = leftRotate(nodeRightLeft);
         return nodeRightLeft;
     }
 
@@ -124,12 +116,12 @@ public class avltree {
                 int heighOfNodeLeftLeft = height(root.left.left);
                 int heighOfNodeLeftRight = height(root.left.right);
                 if (heighOfNodeLeftLeft > heighOfNodeLeftRight) root = rightRotate(root);
-                if (heighOfNodeLeftLeft < heighOfNodeLeftRight) root = leftRightRotate(root);
+                else root = leftRightRotate(root);
             } else {
                 int heighOfNodeRightRight = height(root.right.right);
                 int heighOfNodeRightLeft = height(root.right.left);
                 if (heighOfNodeRightRight > heighOfNodeRightLeft) root = leftRotate(root);
-                if (heighOfNodeRightLeft > heighOfNodeRightRight) root = rightLeftRotate(root);
+                else root = rightLeftRotate(root);
             }
         }
         return root;
