@@ -1,0 +1,36 @@
+package bangbam;
+
+import java.util.LinkedList;
+import java.util.Scanner;
+
+public class MangBamString {
+    //Kích thước của độ dài mảng băm tùy theo đề bài ra
+    final int tableSize = 113;
+    LinkedList<Integer>[]lists = new LinkedList[tableSize];
+    
+    void defineHashTable(){
+        //Mảng danh sách liên k
+        for (int i = 0;i<tableSize;i++){
+            lists[i] = new LinkedList();
+        }
+    }
+    
+    int hfst(String t){
+	  	int s = 0;
+	  	for (int i = 0;i<t.length();i++)
+		  	s +=(int)t.charAt(i);
+	  	return s% tablesize;
+  	}
+    
+    void insert(String x){
+         int pos = hfs(x);
+        
+         //Kiểm tra xem đã có x hay chưa, nếu chưa có thì add vào
+         if (!lists[pos].contains(x))
+               lists[pos].add(x);
+    }
+    
+    public static void main(String[] args) {
+        MangBamInteger s = new MangBamInteger();
+    }
+}
